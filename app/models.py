@@ -3,11 +3,10 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
 class Task(Base):
-    __tablename__ = 'tasks'
+    __tablename__ = "tasks"
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
-    description = Column(String)
-    completed = Column(Boolean, default=False)
+    description = Column(String, index=True)
+    completed = Column(Boolean, default=lambda: False)
