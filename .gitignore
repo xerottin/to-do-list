@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.py[cod]
+todo
+*.DS_Store
+._*
+dump.rdb
+.idea
