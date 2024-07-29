@@ -1,9 +1,15 @@
 from celery import Celery
-from config import RABBITMQ_BROKER_URL
 
-celery_app = Celery('worker', broker=RABBITMQ_BROKER_URL)
+celery_app = Celery(
+    'worker',
+    broker='amqp://localhost',
+    backend='rpc://'
+)
 
-
-@celery_app.task
-def add(x, y):
-    return x + y
+celery_app.conf.update(
+    task_serializer='json',
+    accept_content=['json'],
+    result_serializer='json',
+    timezone='Europe/Moscow',
+    enable_utc=True,
+)

@@ -5,14 +5,11 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app import models
-from app.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS, DATABASE_URL
-
+from app.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
+from app.models import Base
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option('sqlalchemy.url', DATABASE_URL)
-
 
 section = config.config_ini_section
 config.set_section_option(section, "DB_HOST", DB_HOST)
@@ -30,7 +27,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = models.Base.metadata
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
